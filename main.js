@@ -1,3 +1,4 @@
+window.onscroll = function () { window.scrollTo(0, 0); };
 const logo = document.querySelector('.logo');
 const instruct = document.querySelector('.btn-info');
 const modalGiveUp = document.querySelector('.modal__giveup');
@@ -18,6 +19,7 @@ const attempt07 = document.querySelector('.attempt-07');
 const attempt08 = document.querySelector('.attempt-08');
 const attempt09 = document.querySelector('.attempt-09');
 const attempt10 = document.querySelector('.attempt-10');
+const surrender = document.querySelector('.surrender');
 
 const allAttempts = [
 	attempt01, 
@@ -31,19 +33,36 @@ const allAttempts = [
 	attempt09, 
 	attempt10
 	];
+let currentAttemptIndex = 0;
+let currentAttempt = allAttempts[currentAttemptIndex];
 let newPeg;
 let loaderPosition;
+let redScore = 0;
+let whiteScore = 0;
 
 // *************************************************** Functions
 
+function scoreAttempt() {
+
+}
+
 function setLoader() {
-	currentAttempt = allAttempts[1];
 	for (i=0; i < 4; i++) {
 		currentAttempt.children[i].children[0].classList = loaderPegs[i].children[0].classList;
 	}
+	// ready for next
+	if (currentAttemptIndex == allAttempts.length) {
+		endGame();
+	}
+	soreAttempt()
+	currentAttemptIndex++; 
+	currentAttempt = allAttempts[currentAttemptIndex];
+	redoLoader();
 }
 
-
+function endGame() {
+	gameOver = true;
+}
 
 
 
@@ -92,6 +111,17 @@ function hideInstruct() {
 	modalHints.style.display = 'none';
 }
 
+function setPuzzle() {
+	puzzleCode = Math.floor(Math.random() * 1296);
+	puzzleCodeBase = puzzleCode.toString(6).split('');
+	for (i=0; i < (4 - puzzleCodeBase.length); i++) {
+		puzzleCodeBase.splice( 0, 0, '0')
+	}
+	for (i=0; i<4; i++) {
+		surrender.children[i].children[0].className = `peg-${puzzleCodeBase[i]}`;
+	}
+}
+
 
 // **************************************************** Event listeners
 
@@ -108,3 +138,4 @@ instruct.addEventListener('click', showInstruct);
 closeHints.addEventListener('click', hideInstruct);
 
 playButton.addEventListener('click', setLoader);
+window.addEventListener('load', setPuzzle);
