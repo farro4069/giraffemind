@@ -1,0 +1,350 @@
+:root {
+	--white: #fff;
+	--back: #111;
+	--dark: #505050;
+	--grey: #999;
+	--board: #bada55;
+	--red: #ff1919;
+	--orange: #f08d0d;
+	--yellow: #f7d524;
+	--green: #11972c;
+	--blue: #2929d7;
+	--pink: #ea9c9c;
+	--purple: #d140dd;
+}
+
+*, *::before, *::after, a {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+body {
+	font-family: Poppins, Arial, Helvetica, sans-serif;
+	color: white;
+	background: var(--back);
+	width: 100vw;
+	height: 110vh;
+	display: flex;
+	margin: 0 auto;
+	/*padding: 0 5vw;*/
+	flex-direction: column;
+	align-items: stretch;
+}
+
+header {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	border-bottom: 1px solid var(--grey);
+	margin-bottom: 2.5rem;
+}
+
+header .logo {
+	margin: 2vw;
+	width: 10vw;
+	height: 10vw;
+	background: var(--grey) url('favicon_io/poor_giraffe.png');
+	border-radius: 50%;
+	background-size: cover;
+	cursor: pointer;
+}
+
+.btn-info {
+	margin: 3vw;
+	padding: 1vw;
+	width: 6vw;
+	height: 6vw;
+	background: var(--dark);
+	font-family: Courier, serif;
+	font-size: 3vw;
+	font-weight: 900;
+	text-align: center;
+	border: 2px solid var(--grey);
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	margin: 0.5em;
+	font-size: 0.8rem;
+}
+
+h1 {
+	font-size: 1rem;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+}
+
+.game__container {
+	position: relative;
+	display: flex;
+	margin-bottom: 2em;
+
+}
+
+.game__board {
+	display: flex;
+	flex-direction: column;
+	background: var(--board);
+}
+
+
+.basket__pegs {
+	display: flex;
+	background: var(--grey);
+}
+
+.game__board ul,
+.surrender,
+.loader__pegs,
+.basket__pegs {
+	list-style: none;
+	display: flex;
+	justify-content: space-evenly;
+	height: 3.6rem;
+	width: clamp(40vw, 80vw, 360px);
+	border-bottom: solid 2px var(--back);
+}
+
+.surrender,
+.loader__pegs, 
+.basket__pegs { 
+	background: var(--board);
+	border-bottom: none;
+}
+
+.basket__pegs {
+	background: var(--grey);
+}
+
+
+.peg__hole,
+.basket__peg,
+.loader-peg__hole {
+	width: 25%;
+	text-transform: uppercase;
+	font-size: 2rem;
+	text-align: center;
+}
+
+.blank {
+	z-index: 0;
+	display: inline-block;
+	width: 0.4em;
+	height: 0.4em;
+	border-radius: 50%;
+	background: var(--dark);
+	box-shadow: 0 0 0 2px var(--board), 0 0 0 3px var(--grey);
+}
+
+.peg-0, .peg-1, .peg-2, .peg-3, .peg-4, .peg-5 {
+	margin-top: 0.2em;
+	display: inline-block;
+	width: 1.25em;
+	height: 1.25em;
+	border-radius: 50%;
+	box-shadow: 1px 1px 10px 1px var(--dark) inset;
+
+}
+
+.peg-0 {
+	background-color: var(--red);
+}
+.peg-1 {
+	background-color: var(--orange);
+}
+.peg-2 {
+	background-color: var(--yellow);
+}
+.peg-3 {
+	background-color: var(--green);
+}
+.peg-4 {
+	background-color: var(--blue);
+}
+.peg-5 {
+	background-color: var(--purple);
+}
+
+
+.game__score ul {
+	list-style: none;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	height: 3.6rem;
+	width: clamp(10vw, 20vw, 60px);
+	background: var(--grey);
+	border-bottom: solid 2px var(--back);
+
+}
+
+.peg__score {
+	text-align: center;
+}
+
+.basket__container {
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	width: 98vw;
+}
+
+.basket__pegs {
+	display: flex;
+	justify-content: center;
+	min-height: 3rem;
+	list-style: none;
+}
+
+.btn__play, 
+.btn__redo {
+	width: clamp(10vw, 20vw, 60px);
+	text-align: center;
+	background: var(--green);
+	border-radius: 0 0.3em 0.3em 0;
+	cursor: pointer;
+}
+
+.btn__redo {
+	background-color: var(--red);
+}
+
+.pegs {
+	width: 48px;
+	margin: 2px;
+	border-radius: 50%;
+	padding: 0.3em 0;
+	text-transform: uppercase;
+	background-color: var(--grey);
+	font-size: 1.1rem;
+	text-align: center;
+}
+
+.score_blank {
+	display: inline-block;
+	width: 0.4em;
+	height: 0.4em;
+	border-radius: 50%;
+	background-color: var(--dark);
+}
+
+.score_1, .score_2 {
+	display: inline-block;
+	width: 0.8em;
+	height: 0.8em;
+	border-radius: 50%;
+	background-color: var(--white);
+} 
+
+.score_2 {
+	background: var(--red);
+}
+
+.invalid {
+	animation: shake 0.2s infinite;
+}
+
+.modal__hints {
+	display: none;
+	position: fixed;
+	top: 10vh;
+	left: 15vw;
+	width: 70vw;
+	margin: auto;
+	padding: 2rem;
+	height: 40vh;
+	background-color: var(--dark);
+	box-shadow: 0 0 2px 4px var(--back);
+	border-radius: 5%;
+	z-index: 1;
+}
+
+.modal__hints h2 {
+	text-transform: uppercase;
+	color: var(--grey);
+}
+
+.btn-close__hints {
+	position: absolute;
+	top: 0;
+	right: 2vw;
+	display: block;
+	width: 3rem;
+	height: 3rem;
+	color: red;
+	background: var(--dark);
+	font-size: 3rem;
+	font-weight: 900;
+	text-align: center;
+	cursor: pointer;
+	z-index: 2;
+}
+
+.modal__giveup {
+	display: none;
+	position: fixed;
+	top: 3rem;
+	box-shadow: 0 0 10px var(--grey);
+}
+
+.btn-close__giveup {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0;
+	margin: -0.7em -0.5em 0 0;
+	background-color: transparent;
+}
+
+
+@keyframes shake {
+	0% {transform: translateX( -1px );}
+	25% {transform: translateX( 1px );}
+	50% {transform: translateX( -1px );}
+	75% {transform: translateX( 1px );}	
+	100% {transform: translateX( -1px );}	
+}
+
+@media (min-width: 400px) {
+
+	body {
+		/*padding: 0 10vw;*/
+
+	}
+
+	header {
+		margin-bottom: 4rem;
+	}
+
+	h1 {
+		font-size: 2rem;
+		letter-spacing: 5px;
+	}
+
+	.game__container {
+		margin: 0 auto;
+		margin-bottom: 4em;
+	}
+
+	.game ul {
+		height: 5rem;
+	}
+
+	.game li {
+		padding: 0.4em 0;
+		font-size: 2rem;
+	}
+
+	.modal__giveup {
+		top: 7rem;
+	}
+
+	.basket__pegs,
+		width: 80vw;
+	}
+
+}

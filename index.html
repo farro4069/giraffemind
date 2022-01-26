@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="shortcut icon" type="image/jpg" href="favicon_io/favicon.ico"/>
+	<title>Giraffe Mind</title>
+</head>
+<body>
+<header>
+	<div class="logo"></div>
+	<h1>Giraffe Mind</h1>
+	<div class="btn-info">i</div>
+</header>
+
+<div class="game__container">
+	<div class="game__board">
+		<ul class="attempt-08">
+			<li class="peg__hole"><span class="blank"></span></li>
+			<li class="peg__hole"><span class="blank"></span></li>
+			<li class="peg__hole"><span class="blank"></span></li>
+			<li class="peg__hole"><span class="blank"></span></li>
+		</ul>
+		<ul class="attempt-04">
+			<li class="peg__hole"><span class="blank"></span></li>
+			<li class="peg__hole"><span class="blank"></span></li>
+			<li class="peg__hole"><span class="blank"></span></li>
+			<li class="peg__hole"><span class="blank"></span></li>
+		</ul>
+		<ul class="attempt-03">
+			<li class="peg__hole"><span class="blank"></span></li>
+			<li class="peg__hole"><span class="blank"></span></li>
+			<li class="peg__hole"><span class="blank"></span></li>
+			<li class="peg__hole"><span class="blank"></span></li>
+		</ul>
+		<ul class="attempt-02">
+			<li class="peg__hole"><span class="blank"></span></li>
+			<li class="peg__hole"><span class="blank"></span></li>
+			<li class="peg__hole"><span class="blank"></span></li>
+			<li class="peg__hole"><span class="blank"></span></li>
+		</ul>
+		<ul class="attempt-01">
+			<li class="peg__hole"><span class="peg-0"></span></li>
+			<li class="peg__hole"><span class="peg-1"></span></li>
+			<li class="peg__hole"><span class="peg-2"></span></li>
+			<li class="peg__hole"><span class="peg-3"></span></li>
+		</ul>
+
+	</div>
+
+	<div class="game__score">
+		<ul class="score score-08">
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+		</ul>
+		<ul class="score score-04">
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+		</ul>
+		<ul class="score score-03">
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+		</ul>
+		<ul class="score score-02">
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+		</ul>
+		<ul class="score score-01">
+			<li class="peg__score"><span class='score_2'></span></li>
+			<li class="peg__score"><span class='score_1'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+			<li class="peg__score"><span class='score_blank'></span></li>
+		</ul>
+	</div>
+
+	<div class="modal__giveup">
+		<div class="btn-close__giveup">&times;</div>
+		<ul class="surrender">
+			<li class="peg__hole"><span class="peg-5"></span></li>
+			<li class="peg__hole"><span class="peg-1"></span></li>
+			<li class="peg__hole"><span class="peg-0"></span></li>
+			<li class="peg__hole"><span class="peg-1"></span></li>
+		</ul>
+	</div>
+</div>
+<div class="basket__container">
+	<ul class="loader__pegs">
+		<li class="loader-peg__hole" data-number="0"><span class="blank"></span></li>
+		<li class="loader-peg__hole" data-number="1"><span class="blank"></span></li>
+		<li class="loader-peg__hole" data-number="2"><span class="blank"></span></li>
+		<li class="loader-peg__hole" data-number="3"><span class="blank"></span></li>
+	</ul>
+	<div class="btn__play">Play</div>
+</div>
+<div class="basket__container">
+
+	<ul class="basket__pegs">
+		<li class="basket__peg" draggable='true' data-number="0"><span class="peg-0"></span></li>
+		<li class="basket__peg" draggable='true' data-number="1"><span class="peg-1"></span></li>
+		<li class="basket__peg" draggable='true' data-number="2"><span class="peg-2"></span></li>
+		<li class="basket__peg" draggable='true' data-number="3"><span class="peg-3"></span></li>
+		<li class="basket__peg" draggable='true' data-number="4"><span class="peg-4"></span></li>
+		<li class="basket__peg" draggable='true' data-number="5"><span class="peg-5"></span></li>
+	</ul>
+	<div class="btn__redo">Redo</div>
+</div>
+
+
+<footer>Poor Giraffe 2022</footer>
+
+<div class="modal__hints">
+	<div class="btn-close__hints">&times;</div>
+	<ul><h2>Hints</h2>
+		<li>There are six colours.</li>
+		<li>Blanks are not allowed.</li>
+		<li>Doubles are allowed.</li>
+		<li>Mathematicians can solve it in average 4.3 moves.</li>
+		<li>Mathematicians can be arseholes and don't get invited to many parties.</li>
+		<li>Drag one of the six colours onto the 'staging area'.</li>
+		<li>Review your choices and when you're satisfied, click 'Play'.</li>
+	</ul>
+</div>	
+
+<script type="text/javascript" src='main.js'></script>
+</body>
+</html>
