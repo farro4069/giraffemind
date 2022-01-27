@@ -93,31 +93,31 @@ h1 {
 }
 
 
-.basket__pegs {
+.basket__for_pegs {
 	display: flex;
 	background: var(--grey);
 }
 
 .game__board ul,
-.surrender,
-.loader__pegs,
-.basket__pegs {
+.solution,
+.loader__for_pegs,
+.basket__for_pegs {
 	list-style: none;
 	display: flex;
 	justify-content: space-evenly;
-	height: 3.6rem;
+	height: 3.4rem;
 	width: clamp(40vw, 80vw, 360px);
 	border-bottom: solid 2px var(--back);
 }
 
-.surrender,
-.loader__pegs, 
-.basket__pegs { 
+.solution,
+.loader__for_pegs, 
+.basket__for_pegs { 
 	background: var(--board);
 	border-bottom: none;
 }
 
-.basket__pegs {
+.basket__for_pegs {
 	background: var(--grey);
 }
 
@@ -144,8 +144,8 @@ h1 {
 .peg-0, .peg-1, .peg-2, .peg-3, .peg-4, .peg-5 {
 	margin-top: 0.2em;
 	display: inline-block;
-	width: 1.25em;
-	height: 1.25em;
+	width: 1.1em;
+	height: 1.1em;
 	border-radius: 50%;
 	box-shadow: 1px 1px 10px 1px var(--dark) inset;
 
@@ -175,7 +175,7 @@ h1 {
 	list-style: none;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	height: 3.6rem;
+	height: 3.4rem;
 	width: clamp(10vw, 20vw, 60px);
 	background: var(--grey);
 	border-bottom: solid 2px var(--back);
@@ -193,7 +193,7 @@ h1 {
 	width: 98vw;
 }
 
-.basket__pegs {
+.basket__for_pegs {
 	display: flex;
 	justify-content: center;
 	min-height: 3rem;
@@ -204,6 +204,7 @@ h1 {
 .btn__redo {
 	width: clamp(10vw, 20vw, 60px);
 	text-align: center;
+	padding-top: 0.3em;
 	background: var(--green);
 	border-radius: 0 0.3em 0.3em 0;
 	cursor: pointer;
@@ -285,7 +286,7 @@ h1 {
 }
 
 .modal__giveup {
-	display: flex;
+	display: none;
 	position: fixed;
 	top: 3rem;
 	box-shadow: 0 0 10px var(--grey);
@@ -343,7 +344,7 @@ h1 {
 		top: 7rem;
 	}
 
-	.basket__pegs,
+	.basket__for_pegs,
 		width: 80vw;
 	}
 

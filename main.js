@@ -19,7 +19,8 @@ const attempt07 = document.querySelector('.attempt-07');
 const attempt08 = document.querySelector('.attempt-08');
 const attempt09 = document.querySelector('.attempt-09');
 const attempt10 = document.querySelector('.attempt-10');
-const surrender = document.querySelector('.surrender');
+const solution = document.querySelector('.solution');
+const gameScore = document.querySelector('.game__score');
 
 const allAttempts = [
 	attempt01, 
@@ -39,11 +40,47 @@ let newPeg;
 let loaderPosition;
 let redScore = 0;
 let whiteScore = 0;
+let gameScoreLength = gameScore.children.length;
 
 // *************************************************** Functions
 
-function scoreAttempt() {
+function setScorePegs() {
+	scoreChildIndex = gameScoreLength - currentAttemptIndex - 1;
+	for (i=0; i < redScore; i++) {
+		gameScore.children[scoreChildIndex].children[i].children[0].classList.replace('score_blank', 'score_2');
+	}
+	for (i=redScore; i < (redScore + whiteScore); i++) {
+		gameScore.children[scoreChildIndex].children[i].children[0].classList.replace('score_blank', 'score_1');	
+	}
+}
 
+function scoreAttempt() {
+	solutionCheck = [...solution.children];
+	for (i=3; i >= 0; i--) {
+		if (currentAttempt.children[i].children[0].className == solution.children[i].children[0].className) {
+			redScore++;
+			solutionCheck.splice(i, 1);
+		}
+	}
+	solutionCheck.forEach(c => console.log('Not red: ', c.children[0].classList[0]));
+
+	for (i=0; i<4; i++) {
+		for (s = (solutionCheck.length - 1); s >= 0; s--) {
+			console.log('s = ', s, 'i =', i );
+			if (solutionCheck[s].children[0].className == currentAttempt.children[i].children[0].className) {
+				console.log(currentAttempt.children[i].children[0].className);
+				console.log('Match - eliminating ', s, solutionCheck[s].children[0].className);
+				solutionCheck.splice(s, 1);
+				whiteScore++;
+				break;
+			}
+		}
+	}
+	console.log(redScore, whiteScore);
+	setScorePegs();
+	redScore = 0;
+	whiteScore = 0;
+	solutionCheck = [];
 }
 
 function setLoader() {
@@ -54,7 +91,7 @@ function setLoader() {
 	if (currentAttemptIndex == allAttempts.length) {
 		endGame();
 	}
-	soreAttempt()
+	scoreAttempt();
 	currentAttemptIndex++; 
 	currentAttempt = allAttempts[currentAttemptIndex];
 	redoLoader();
@@ -115,10 +152,10 @@ function setPuzzle() {
 	puzzleCode = Math.floor(Math.random() * 1296);
 	puzzleCodeBase = puzzleCode.toString(6).split('');
 	for (i=0; i < (4 - puzzleCodeBase.length); i++) {
-		puzzleCodeBase.splice( 0, 0, '0')
+		puzzleCodeBase.splice( 0, 0, '0');
 	}
 	for (i=0; i<4; i++) {
-		surrender.children[i].children[0].className = `peg-${puzzleCodeBase[i]}`;
+		solution.children[i].children[0].className = `peg-${puzzleCodeBase[i]}`;
 	}
 }
 
