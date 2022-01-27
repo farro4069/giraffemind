@@ -110,6 +110,10 @@ h1 {
 	border-bottom: solid 2px var(--back);
 }
 
+.playing {
+	opacity: 0.4;
+} 
+
 .solution,
 .loader__for_pegs, 
 .basket__for_pegs { 

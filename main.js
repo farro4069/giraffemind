@@ -9,6 +9,7 @@ const basketPegs = document.querySelectorAll('.basket__peg');
 const loaderPegs = document.querySelectorAll('.loader-peg__hole');
 const playButton = document.querySelector('.btn__play');
 const redoButton = document.querySelector('.btn__redo');
+const gameBoard = document.querySelector('.game__board');
 const attempt01 = document.querySelector('.attempt-01');
 const attempt02 = document.querySelector('.attempt-02');
 const attempt03 = document.querySelector('.attempt-03');
@@ -22,6 +23,7 @@ const attempt10 = document.querySelector('.attempt-10');
 const solution = document.querySelector('.solution');
 const gameScore = document.querySelector('.game__score');
 
+
 const allAttempts = [
 	attempt01, 
 	attempt02, 
@@ -34,6 +36,8 @@ const allAttempts = [
 	attempt09, 
 	attempt10
 	];
+
+let gameOver = false;
 let currentAttemptIndex = 0;
 let currentAttempt = allAttempts[currentAttemptIndex];
 let newPeg;
@@ -55,46 +59,46 @@ function setScorePegs() {
 }
 
 function scoreAttempt() {
+	attemptCheck = [...currentAttempt.children];
 	solutionCheck = [...solution.children];
 	for (i=3; i >= 0; i--) {
-		if (currentAttempt.children[i].children[0].className == solution.children[i].children[0].className) {
+		if (attemptCheck[i].children[0].className == solutionCheck[i].children[0].className) {
 			redScore++;
+			attemptCheck.splice(i, 1);
 			solutionCheck.splice(i, 1);
 		}
 	}
-	solutionCheck.forEach(c => console.log('Not red: ', c.children[0].classList[0]));
-
-	for (i=0; i<4; i++) {
-		for (s = (solutionCheck.length - 1); s >= 0; s--) {
-			console.log('s = ', s, 'i =', i );
-			if (solutionCheck[s].children[0].className == currentAttempt.children[i].children[0].className) {
-				console.log(currentAttempt.children[i].children[0].className);
-				console.log('Match - eliminating ', s, solutionCheck[s].children[0].className);
-				solutionCheck.splice(s, 1);
+	for (a = (attemptCheck.length - 1); a >= 0; a--) {
+		for (i=(solutionCheck.length - 1); i >= 0; i--) {
+			if (attemptCheck[a].children[0].className == solutionCheck[i].children[0].className) {
+				attemptCheck.splice(a, 1);
+				solutionCheck.splice(i, 1);
 				whiteScore++;
 				break;
 			}
 		}
 	}
-	console.log(redScore, whiteScore);
 	setScorePegs();
+	gameOver = (redScore == 4) ? true: false;
 	redScore = 0;
 	whiteScore = 0;
+	attemptCheck = [];
 	solutionCheck = [];
 }
 
 function setLoader() {
-	for (i=0; i < 4; i++) {
-		currentAttempt.children[i].children[0].classList = loaderPegs[i].children[0].classList;
+	if (!gameOver) {
+		for (i=0; i < 4; i++) {
+			currentAttempt.children[i].children[0].classList = loaderPegs[i].children[0].classList;
+		}
+		if (currentAttemptIndex == allAttempts.length) {
+			endGame();
+		}
+		scoreAttempt();
+		currentAttemptIndex++; 
+		currentAttempt = allAttempts[currentAttemptIndex];
+		redoLoader();		
 	}
-	// ready for next
-	if (currentAttemptIndex == allAttempts.length) {
-		endGame();
-	}
-	scoreAttempt();
-	currentAttemptIndex++; 
-	currentAttempt = allAttempts[currentAttemptIndex];
-	redoLoader();
 }
 
 function endGame() {
@@ -102,14 +106,10 @@ function endGame() {
 }
 
 
-
-function dragLeave() {
-	return
-}
-
-
 function dropIt(e) {
 	loaderPegs[loaderPosition].children[0].classList.replace('blank', `peg-${newPeg}`);
+	gameBoard.classList.remove('playing');
+
 }
 
 function dragOver(e) {
@@ -119,12 +119,9 @@ function dragOver(e) {
 	}
 }
 
-function dragEnter() {
-	return
-}
-
 function dragStart(e) {
 	newPeg = e.target.dataset.number;
+	gameBoard.classList.add('playing');
 }
 
 function redoLoader() {
@@ -163,10 +160,11 @@ function setPuzzle() {
 // **************************************************** Event listeners
 
 
+// basketPegs.forEach(p => addEventListener('touchstart', dragStart));
+
+
 basketPegs.forEach(p => addEventListener('dragstart', dragStart));
 basketPegs.forEach(p => addEventListener('dragover', dragOver));
-basketPegs.forEach(p => addEventListener('dragenter', dragEnter));
-basketPegs.forEach(p => addEventListener('dragleave', dragLeave));
 basketPegs.forEach(p => addEventListener('drop', dropIt));
 
 redoButton.addEventListener('click', redoLoader);
