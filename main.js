@@ -124,8 +124,9 @@ function dragStart(e) {
 }
 
 function touchEnd(e) {
-	// console.log(e.target);
+
 	newPeg = e.target.dataset.number || e.target.parentElement.dataset.number;
+	if (newPeg == undefined) { return } 
 	console.log(newPeg);
 	// Add to next loader position
 	for (i=0; i<4; i++){
