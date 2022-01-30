@@ -1,4 +1,3 @@
-window.onscroll = function () { window.scrollTo(0, 0); };
 const logo = document.querySelector('.logo');
 const instruct = document.querySelector('.btn-info');
 const modalGiveUp = document.querySelector('.modal__giveup');
