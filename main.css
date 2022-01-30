@@ -239,14 +239,15 @@ h1 {
 
 .score_1, .score_2 {
 	display: inline-block;
-	width: 0.8em;
+	width: 0.9em;
 	height: 0.8em;
+	border: solid 1px var(--white);
 	border-radius: 50%;
-	background-color: var(--white);
+	background-color: var(--yellow);
 } 
 
 .score_2 {
-	background: var(--red);
+	background: var(--green);
 }
 
 .invalid {
