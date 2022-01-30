@@ -124,6 +124,23 @@ function dragStart(e) {
 	gameBoard.classList.add('playing');
 }
 
+function touchEnd(e) {
+	// console.log(e.target);
+	newPeg = e.target.dataset.number || e.target.parentElement.dataset.number;
+	console.log(newPeg);
+	// Add to next loader position
+	for (i=0; i<4; i++){
+		console.log(loaderPegs[i].children[0].className);
+		if (loaderPegs[i].children[0].className == 'blank') {
+			loaderPegs[i].children[0].classList.replace('blank', `peg-${newPeg}`);
+			break;
+		}
+	}
+}
+
+
+
+
 function redoLoader() {
 	loaderPegs.forEach(p => p.children[0].className = 'blank');
 }
@@ -148,7 +165,7 @@ function hideInstruct() {
 function setPuzzle() {
 	puzzleCode = Math.floor(Math.random() * 1296);
 	puzzleCodeBase = puzzleCode.toString(6).split('');
-	for (i=0; i < (4 - puzzleCodeBase.length); i++) {
+	while (puzzleCodeBase.length < 4) {
 		puzzleCodeBase.splice( 0, 0, '0');
 	}
 	for (i=0; i<4; i++) {
@@ -160,7 +177,7 @@ function setPuzzle() {
 // **************************************************** Event listeners
 
 
-// basketPegs.forEach(p => addEventListener('touchstart', dragStart));
+basketPegs.forEach(p => addEventListener('touchend', touchEnd));
 
 
 basketPegs.forEach(p => addEventListener('dragstart', dragStart));
