@@ -290,6 +290,22 @@ h1 {
 	z-index: 2;
 }
 
+.modal__congrats {
+	display: none;
+	position: fixed;
+	top: 3.5rem;
+	width: 90%;
+	margin-left: 5%;
+	justify-content: center;
+	text-transform: uppercase;
+	padding: 0 5%;
+	border: solid 2px var(--white);
+	transform: rotate(359deg);
+	background: linear-gradient(90deg, var(--yellow), var(--green));
+	animation: winner linear 200ms;
+}
+
+
 .modal__giveup {
 	display: none;
 	position: fixed;
@@ -307,12 +323,10 @@ h1 {
 }
 
 
-@keyframes shake {
-	0% {transform: translateX( -1px );}
-	25% {transform: translateX( 1px );}
-	50% {transform: translateX( -1px );}
-	75% {transform: translateX( 1px );}	
-	100% {transform: translateX( -1px );}	
+@keyframes winner {
+	0% {transform: rotate( 0deg );}
+	50% {transform: rotate( 2deg );}
+	100% {transform: rotate( -1deg );}
 }
 
 @media (min-width: 400px) {

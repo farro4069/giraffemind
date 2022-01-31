@@ -4,6 +4,7 @@ const modalGiveUp = document.querySelector('.modal__giveup');
 const modalHints = document.querySelector('.modal__hints');
 const closeGiveUp = document.querySelector('.btn-close__giveup');
 const closeHints = document.querySelector('.btn-close__hints');
+const congrats = document.querySelector('.modal__congrats');
 const basketPegs = document.querySelectorAll('.basket__peg');
 const loaderPegs = document.querySelectorAll('.loader-peg__hole');
 const playButton = document.querySelector('.btn__play');
@@ -47,6 +48,7 @@ let gameScoreLength = gameScore.children.length;
 
 // *************************************************** Functions
 
+
 function setScorePegs() {
 	scoreChildIndex = gameScoreLength - currentAttemptIndex - 1;
 	for (i=0; i < redScore; i++) {
@@ -78,7 +80,9 @@ function scoreAttempt() {
 		}
 	}
 	setScorePegs();
-	gameOver = (redScore == 4) ? true: false;
+	if (redScore == 4) {
+		endGame();		
+	};
 	redScore = 0;
 	whiteScore = 0;
 	attemptCheck = [];
@@ -102,6 +106,7 @@ function setLoader() {
 
 function endGame() {
 	gameOver = true;
+	congrats.style.display = 'flex';
 }
 
 
@@ -126,11 +131,9 @@ function dragStart(e) {
 function touchEnd(e) {
 
 	newPeg = e.target.dataset.number || e.target.parentElement.dataset.number;
-	if (newPeg == undefined) { return } 
-	console.log(newPeg);
+	if (newPeg == undefined) {return} 
 	// Add to next loader position
 	for (i=0; i<4; i++){
-		console.log(loaderPegs[i].children[0].className);
 		if (loaderPegs[i].children[0].className == 'blank') {
 			loaderPegs[i].children[0].classList.replace('blank', `peg-${newPeg}`);
 			break;
